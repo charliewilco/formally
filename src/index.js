@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import showdown from 'showdown'
+import Clipboard from 'clipboard'
 
 import './index.css'
 
@@ -12,6 +13,7 @@ const Mark = props =>
     <path fill={props.color} d='M30 98v-68h20l20 25 20-25h20v68h-20v-39l-20 25-20-25v39zM155 98l-30-33h20v-35h20v35h20z'/>
   </svg>
 
+const ClipboardButton = props => <button className='Clipboard' id='clipboard' onClick={props.onClipboard}>Copy</button>
 const Button = props => <button className='Button' onSubmit={props.onSubmit} children='Submit' />
 const WordCount = props => <span className='Input__count' children={props.number} />
 
@@ -36,7 +38,10 @@ function createMarkup(x) {
 
 const Content = props =>
   <div className='Output'>
-    <div className='Output__content' dangerouslySetInnerHTML={createMarkup(props.content)} />
+    <div className='Output__content'>
+      <ClipboardButton onClick={props.onClipboard} />
+      <div id='content' className='__markdown' dangerouslySetInnerHTML={createMarkup(props.content)} />
+    </div>
   </div>
 
 const { localStorage } = window
@@ -54,6 +59,12 @@ class App extends Component {
     localStorage.setItem('lowerCaseValue', this.state.value)
   }
 
+  onClipboard = x => {
+    new Clipboard('#clipboard', {
+      text() { return x }
+    })
+  }
+
   componentWillMount () {
     console.log(localStorage.getItem('lowerCaseValue'))
   }
@@ -65,7 +76,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Input value={this.state.value} onSubmit={this.onSubmit} onChange={this.onChange} />
-        <Content content={lowlow} />
+        <Content content={lowlow} onClipboard={this.onClipboard(this.state.value.toLowerCase())} />
       </div>
     )
   }
