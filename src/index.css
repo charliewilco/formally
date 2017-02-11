@@ -15,7 +15,7 @@ html {
   box-sizing: border-box;
   background: #092E41;
   font-family: Avenir, sans-serif;
-  color: #91C5DF;
+  color: #B3DBEE;
 }
 
 .App {
@@ -88,11 +88,73 @@ html {
   max-width: 100%;
 }
 
-
 .Output__content {
   padding: 1rem;
   background: linear-gradient(121.68deg, #092E41 0%, #0C6491 93.37%);
   box-shadow: 0 0 4px rgba(0, 0, 0, .07), 0 4px 8px rgba(0, 0, 0, .14);
+  position: relative;
+}
+
+.Clipboard {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 0;
+  color: white;
+  background-color: #E05557;
+  position: absolute;
+  top: -.75rem;
+  right: -.375rem;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .07), 0 4px 8px rgba(0, 0, 0, .14);
+  transform: scale(1, 1);
+  transition: transform 375ms ease-in-out;
+}
+
+.Clipboard:hover {
+  transform: scale(.75, .75);
+}
+
+.__markdown p { margin-bottom: 1rem; }
+
+.__markdown blockquote {
+  font-style: italic;
+  font-size: 1.125rem;
+}
+
+.__markdown ul,
+.__markdown ol {
+  list-style-position: inside;
+  margin-bottom: 1rem;
+}
+
+.__markdown li { padding: 0; }
+
+.__markdown blockquote::after {
+  content: '';
+  display: block;
+  background-color: #FECD6D;
+  width: 3rem;
+  height: 2px;
+  margin-bottom: 1rem;
+}
+
+.__markdown hr {
+  width: 50%;
+  margin: 0 auto 1rem;
+  background-color: #FECD6D;
+  border: 0;
+  height: 2px;
+}
+
+.__markdown a {
+  color: #E05557;
+  text-decoration: none;
+}
+
+.__markdown a:focus,
+.__markdown a:hover {
+  opacity: .5;
 }
 
 @media only screen and (min-width: 48rem) {
@@ -106,4 +168,10 @@ html {
   }
 
   .Input__area { min-height: 18.75rem; }
+
+
+  .Clipboard {
+    top: -1rem;
+    right: -1rem;
+  }
 }
