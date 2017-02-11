@@ -33,7 +33,7 @@ const Input = props =>
         className='Input__area'
         id='area'
         value={props.value}
-        onKeyPress={props.onKeyPress}
+        onChange={props.onChange}
       />
       <WordCount number={props.value.length} />
     </div>
@@ -105,7 +105,7 @@ class App extends Component {
         <Input
           value={this.state.value}
           onSubmit={this.onSubmit}
-          onKeyPress={this.onChange}
+          onChange={this.onChange}
           checked={this.state.upper}
           onChecked={this.onSwitch}
         />
