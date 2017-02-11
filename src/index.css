@@ -45,6 +45,40 @@ html {
   background: #E29C00;
 }
 
+.Switch {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.Switch__check {
+  background-color: white;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: .75rem;
+  border-radius: 50%;
+  padding: .125rem;
+  border: 2px solid #092E41;
+  box-shadow: 0 0 0 2px rgba(226, 156, 0, 0.46);
+  width: 1.5rem;
+  height: 1.5rem;
+  appearance: none;
+  margin-right: .5rem;
+  transition: background 375ms ease-in-out;
+}
+
+.Switch__check:checked {
+  background-color: var(--yellow);
+  background-image: url('./check.svg');
+}
+
+.Switch__check:focus { outline: none; }
+
+.Switch__label {
+  font-size: .875rem;
+  line-height: 1;
+}
+
 .Input {
   margin-bottom: 3rem;
   max-width: 100%;
@@ -63,7 +97,8 @@ html {
 .Input__label {
   font-size: .75rem;
   letter-spacing: 2px;
-  margin-right: 1rem;
+  margin-right: .875rem;
+  margin-left: .875rem;
   text-transform: uppercase;
 }
 

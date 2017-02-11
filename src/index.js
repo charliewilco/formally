@@ -17,16 +17,30 @@ const ClipboardButton = props => <button className='Clipboard' id='clipboard' on
 const Button = props => <button className='Button' onSubmit={props.onSubmit} children='Submit' />
 const WordCount = props => <span className='Input__count' children={props.number} />
 
+const Switch = ({ onChange, checked, value }) =>
+  <label className='Switch' id='checkUpper'>
+    <input className='Switch__check' onChange={onChange} checked={checked} htmlFor='checkUpper' type='checkbox' />
+    <span className='Switch__label'>Uppercase?</span>
+  </label>
+
 const Input = props =>
   <form className='Input' onSubmit={props.onSubmit}>
     <div>
-      <textarea id='area' className='Input__area' {...props} />
+      <textarea
+        id='area'
+        className='Input__area'
+        value={props.value}
+        onKeyPress={props.onKeyPress}
+      />
       <WordCount number={props.value.length} />
     </div>
     <div className='Input__tray'>
       <div className='Input__tray__content'>
-        <label htmlFor='area' className='Input__label'>Convert to Lowercase</label>
-        <Mark color='rgba(30, 184, 235, 0.35)' />
+        <div className='Input__tray__content'>
+          <Mark color='rgba(30, 184, 235, 0.35)' />
+          <label htmlFor='area' className='Input__label'>Text to Convert</label>
+        </div>
+        <Switch checked={props.checked} onChange={props.onChecked} />
       </div>
       <Button onSubmit={props.onSubmit} />
     </div>
@@ -48,7 +62,8 @@ const { localStorage } = window
 
 class App extends Component {
   state = {
-    value: localStorage.getItem('lowerCaseValue') || ''
+    value: localStorage.getItem('lowerCaseValue') || '',
+    upper: false
   }
 
   onSubmit = e => e.preventDefault()
@@ -58,6 +73,8 @@ class App extends Component {
 
     localStorage.setItem('lowerCaseValue', this.state.value)
   }
+
+  onSwitch = () => this.setState({ upper: !this.state.upper })
 
   onClipboard = x => {
     new Clipboard('#clipboard', {
@@ -71,12 +88,27 @@ class App extends Component {
 
   render() {
 
-    const lowlow = showshow.makeHtml(this.state.value.toLowerCase())
+    const lowlow = () => {
+      if (this.state.upper) {
+        return showshow.makeHtml(this.state.value.toUpperCase())
+      } else {
+        return showshow.makeHtml(this.state.value.toLowerCase())
+      }
+    }
 
     return (
       <div className='App'>
-        <Input value={this.state.value} onSubmit={this.onSubmit} onChange={this.onChange} />
-        <Content content={lowlow} onClipboard={this.onClipboard(this.state.value.toLowerCase())} />
+        <Input
+          value={this.state.value}
+          onSubmit={this.onSubmit}
+          onKeyPress={this.onChange}
+          checked={this.state.upper}
+          onChecked={this.onSwitch}
+        />
+        <Content
+          content={lowlow()}
+          onClipboard={this.onClipboard(this.state.value.toLowerCase())}
+        />
       </div>
     )
   }
