@@ -27,8 +27,8 @@ const Input = props =>
   <form className='Input' onSubmit={props.onSubmit}>
     <div>
       <textarea
-        id='area'
         className='Input__area'
+        id='area'
         value={props.value}
         onKeyPress={props.onKeyPress}
       />
@@ -46,8 +46,8 @@ const Input = props =>
     </div>
   </form>
 
-function createMarkup(x) {
-  return {__html: x }
+function createMarkup (x) {
+  return { __html: x }
 }
 
 const Content = props =>
