@@ -165,7 +165,7 @@ html {
 }
 
 .Clipboard:hover {
-  transform: scale(.75, .75);
+  transform: scale(.875, .875) rotate(-30deg);
 }
 
 .__markdown p { margin-bottom: 1rem; }
