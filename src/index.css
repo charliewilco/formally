@@ -1,5 +1,6 @@
 :root {
   --w: 60rem;
+  --yellow: #FFBA00;
 }
 
 *,
@@ -27,13 +28,21 @@ html {
 }
 
 .Button {
-  background: #FECD6D;
-  color: white;
+  background: var(--yellow);
+  color: #092E41;
   border: 0;
   padding: .5rem 1rem;
   border-radius: .5rem;
   font-size: 1rem;
   appearance: none;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 3px;
+  transition: background-color 375ms ease-in-out;
+}
+
+.Button:hover {
+  background: #E29C00;
 }
 
 .Input {
@@ -52,27 +61,36 @@ html {
 }
 
 .Input__label {
-  font-size: .875rem;
-  letter-spacing: 3px;
+  font-size: .75rem;
+  letter-spacing: 2px;
   margin-right: 1rem;
   text-transform: uppercase;
 }
 
 .Input__area {
-  padding: .75rem;
+  padding: 1.375rem .75rem .75rem .75rem;
   min-height: 12.5rem;
   margin-bottom: 1rem;
   display: block;
+  border-radius: .25rem;
   border: 1px solid rgba(30, 184, 235, 0.35);
   resize: none;
   width: 100%;
   font: inherit;
   color: white;
   background: #063651;
+  transition: border-color 375ms ease-in-out;
+}
+
+.Input__area:focus {
+  outline: none;
+  border-color: var(--yellow);
+  box-shadow: 0 0 4px rgba(0, 0, 0, .07), 0 4px 8px rgba(0, 0, 0, .14);
 }
 
 .Input__tray {
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: space-between;
 }
@@ -133,7 +151,7 @@ html {
 .__markdown blockquote::after {
   content: '';
   display: block;
-  background-color: #FECD6D;
+  background-color: var(--yellow);
   width: 3rem;
   height: 2px;
   margin-bottom: 1rem;
@@ -142,7 +160,7 @@ html {
 .__markdown hr {
   width: 50%;
   margin: 0 auto 1rem;
-  background-color: #FECD6D;
+  background-color: var(--yellow);
   border: 0;
   height: 2px;
 }
@@ -169,6 +187,9 @@ html {
 
   .Input__area { min-height: 18.75rem; }
 
+  .Input__label {
+    font-size: .875rem;
+  }
 
   .Clipboard {
     top: -1rem;
