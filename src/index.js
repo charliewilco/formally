@@ -41,7 +41,7 @@ const Input = props =>
       <div className='Input__tray__content'>
         <div className='Input__tray__content'>
           <Mark color='rgba(30, 184, 235, 0.35)' />
-          <label htmlFor='area' className='Input__label'>Text to Convert</label>
+          <label htmlFor='area' className='Input__label'>Convert</label>
         </div>
         <Switch checked={props.checked} onChange={props.onChecked} />
       </div>
@@ -69,20 +69,26 @@ class App extends Component {
     upper: false
   }
 
-  onSubmit = e => e.preventDefault()
+  _onSubmit = e => e.preventDefault()
 
-  onChange = e =>  {
-    this.setState({ value: e.target.value })
+  _onChange = e => this.setState({
+      value: e.target.value
+    }, localStorage.setItem('lowerCaseValue', this.state.value))
 
-    localStorage.setItem('lowerCaseValue', this.state.value)
-  }
+  _onSwitch = () => this.setState({ upper: !this.state.upper })
 
-  onSwitch = () => this.setState({ upper: !this.state.upper })
+  _onClipboard = x => new Clipboard('#clipboard', {
+    text() { return x }
+  })
 
-  onClipboard = x => {
-    new Clipboard('#clipboard', {
-      text() { return x }
-    })
+  _lowlow = () => {
+    const showshow = new showdown.Converter()
+
+    if (this.state.upper) {
+      return showshow.makeHtml(this.state.value.toUpperCase())
+    } else {
+      return showshow.makeHtml(this.state.value.toLowerCase())
+    }
   }
 
   componentWillMount () {
@@ -90,28 +96,20 @@ class App extends Component {
   }
 
   render() {
-    const showshow = new showdown.Converter()
-
-    const lowlow = () => {
-      if (this.state.upper) {
-        return showshow.makeHtml(this.state.value.toUpperCase())
-      } else {
-        return showshow.makeHtml(this.state.value.toLowerCase())
-      }
-    }
+    const { value } = this.state
 
     return (
       <div className='App'>
         <Input
-          value={this.state.value}
-          onSubmit={this.onSubmit}
-          onChange={this.onChange}
+          value={value}
+          onSubmit={this._onSubmit}
+          onChange={this._onChange}
           checked={this.state.upper}
-          onChecked={this.onSwitch}
+          onChecked={this._onSwitch}
         />
         <Content
-          content={lowlow()}
-          onClipboard={this.onClipboard(this.state.value.toLowerCase())}
+          content={this._lowlow()}
+          onClipboard={this._onClipboard(value.toLowerCase())}
         />
       </div>
     )
