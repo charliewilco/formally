@@ -7,7 +7,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10",
-    "serve": "^3.2.10",
+    "serve": "^6.0.0",
     "showdown": "^1.6.4",
     "typeface-hind": "^0.0.28"
   },
