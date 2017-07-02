@@ -1,5 +1,6 @@
 :root {
   --w: 60rem;
+  --ss: 'Hind', 'Avenir Next', 'Segoe UI', 'PT Sans', sans-serif;
   --yellow: #FFBA00;
 }
 
@@ -15,8 +16,9 @@
 html {
   box-sizing: border-box;
   background: #092E41;
-  font-family: Avenir, sans-serif;
+  font-family: var(--ss);
   color: #B3DBEE;
+  -webkit-font-smoothing: antialiased;
 }
 
 .App {
@@ -31,9 +33,10 @@ html {
   background: var(--yellow);
   color: #092E41;
   border: 0;
-  padding: .5rem 1rem;
+  padding: .75rem 1rem;
   border-radius: .5rem;
   font-size: 1rem;
+  line-height: 1rem;
   appearance: none;
   text-transform: uppercase;
   font-weight: 500;
