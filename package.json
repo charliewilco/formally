@@ -7,8 +7,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "^2.1.2",
-    "showdown": "^1.9.0",
-    "typeface-hind": "^0.0.54"
+    "showdown": "^1.9.0"
   },
   "scripts": {
     "dev": "PORT=3567 react-scripts start",
