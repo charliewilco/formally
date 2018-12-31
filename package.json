@@ -3,25 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "clipboard": "^1.6.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.10",
-    "serve": "^6.0.0",
-    "showdown": "^1.6.4",
-    "typeface-hind": "^0.0.28"
-  },
-  "now": {
-    "name": "lowlow",
-    "alias": "lowlow"
+    "clipboard": "^2.0.4",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-scripts": "^2.1.2",
+    "showdown": "^1.9.0",
+    "typeface-hind": "^0.0.54"
   },
   "scripts": {
-    "start": "serve -s build",
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
+    "dev": "PORT=3567 react-scripts start",
+    "now-build": "react-scripts build && mv build dist",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "go": "now && now alias"
+    "eject": "react-scripts eject"
   },
   "browserslist": [
     "> 1%",

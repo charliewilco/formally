@@ -98,7 +98,7 @@ class App extends Component {
     }
   }
 
-  componentWillMount () {
+  componentDidMount () {
     console.log(localStorage.getItem('lowerCaseValue'))
   }
 
