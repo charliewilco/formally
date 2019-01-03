@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as showdown from "showdown";
-import * as Clipboard from "clipboard";
 import Input from "./input";
 import Content from "./content";
 
@@ -31,14 +30,6 @@ export default class App extends React.Component<IAppProps, IAppState> {
 
   _onSwitch = () => this.setState(state => ({ upper: !state.upper }));
 
-  _onClipboard = (text: string): void => {
-    new Clipboard.default("#clipboard", {
-      text() {
-        return text;
-      }
-    });
-  };
-
   _lowlow = () => {
     const showshow = new showdown.Converter();
 
@@ -47,10 +38,6 @@ export default class App extends React.Component<IAppProps, IAppState> {
     } else {
       return showshow.makeHtml(this.state.value.toLowerCase());
     }
-  };
-
-  updateContent = (): void => {
-    this._onClipboard(this.state.value.toLowerCase());
   };
 
   componentDidUpdate(prevProps: IAppProps, prevState: IAppState) {
@@ -71,7 +58,10 @@ export default class App extends React.Component<IAppProps, IAppState> {
           checked={upper}
           onChecked={this._onSwitch}
         />
-        <Content content={this._lowlow()} onClipboard={this.updateContent} />
+        <Content
+          content={this._lowlow()}
+          clipBoardValue={upper ? value.toUpperCase() : value.toLowerCase()}
+        />
       </div>
     );
   }
