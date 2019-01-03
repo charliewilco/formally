@@ -1,6 +1,6 @@
 :root {
   --w: 60rem;
-  --ss: 'Hind', 'Avenir Next', 'Segoe UI', 'PT Sans', sans-serif;
+  --ss: system-ui, 'Avenir Next', 'Segoe UI', 'PT Sans', sans-serif;
   --yellow: #FFBA00;
 }
 
@@ -16,7 +16,7 @@
 html {
   box-sizing: border-box;
   background: #092E41;
-  font-family: var(--ss);
+  font: 400 100%/1.6 var(--ss);
   color: #B3DBEE;
   -webkit-font-smoothing: antialiased;
 }
@@ -38,9 +38,7 @@ html {
   font-size: 1rem;
   line-height: 1rem;
   appearance: none;
-  text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 3px;
+  font-weight: 900;
   transition: background-color 375ms ease-in-out;
 }
 
@@ -99,10 +97,8 @@ html {
 
 .Input__label {
   font-size: .75rem;
-  letter-spacing: 2px;
   margin-right: .875rem;
   margin-left: .875rem;
-  text-transform: uppercase;
 }
 
 .Input__area {
@@ -140,6 +136,7 @@ html {
 
 .Output {
   font-size: 112.5%;
+  font-weight: 700;
   width: 100%;
   max-width: 100%;
 }
@@ -158,6 +155,8 @@ html {
   border: 0;
   color: white;
   background-color: #E05557;
+  font-weight: 900;
+  font-size: 13px;
   position: absolute;
   top: -.75rem;
   right: -.375rem;
