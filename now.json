@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "lowlow",
-  "alias": "lowlow",
+  "alias": "lowlow.now.sh",
   "builds": [{ "src": "package.json", "use": "@now/static-build" }],
   "routes": [
     { "src": "^/static/(.*)", "dest": "/static/$1" },
