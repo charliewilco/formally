@@ -7,13 +7,13 @@ function createMarkup(__html: string) {
 
 interface IContentProps {
   content: string;
-  onClipboard: (x: any) => void;
+  clipBoardValue: string;
 }
 
-const Content: React.SFC<IContentProps> = ({ onClipboard, content }) => (
+const Content: React.SFC<IContentProps> = ({ clipBoardValue, content }) => (
   <div className="Output">
     <div className="Output__content">
-      <ClipboardButton onClipboard={onClipboard} />
+      <ClipboardButton value={clipBoardValue} />
       <div
         id="content"
         className="__markdown"

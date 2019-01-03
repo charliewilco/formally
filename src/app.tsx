@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as showdown from "showdown";
-import * as Clipboard from "clipboard";
 import Input from "./input";
 import Content from "./content";
 
@@ -14,32 +13,26 @@ interface IAppState {
 }
 
 export default class App extends React.Component<IAppProps, IAppState> {
-  state = {
+  public readonly state = {
     value: localStorage.getItem("lowerCaseValue") || "",
     upper: false
   };
 
-  _onSubmit = (e: React.SyntheticEvent) => {
+  private _onSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault();
   };
 
-  _onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  private _onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     this.setState({
       value: e.target.value
     });
   };
 
-  _onSwitch = () => this.setState(state => ({ upper: !state.upper }));
-
-  _onClipboard = (text: string): void => {
-    new Clipboard.default("#clipboard", {
-      text() {
-        return text;
-      }
-    });
+  private _onSwitch = (): void => {
+    this.setState(state => ({ upper: !state.upper }));
   };
 
-  _lowlow = () => {
+  private _lowlow = (): string => {
     const showshow = new showdown.Converter();
 
     if (this.state.upper) {
@@ -49,17 +42,13 @@ export default class App extends React.Component<IAppProps, IAppState> {
     }
   };
 
-  updateContent = (): void => {
-    this._onClipboard(this.state.value.toLowerCase());
-  };
-
-  componentDidUpdate(prevProps: IAppProps, prevState: IAppState) {
+  public componentDidUpdate(prevProps: IAppProps, prevState: IAppState): void {
     if (prevProps && prevState.value !== this.state.value) {
       localStorage.setItem("lowerCaseValue", this.state.value);
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const { value, upper } = this.state;
 
     return (
@@ -71,7 +60,10 @@ export default class App extends React.Component<IAppProps, IAppState> {
           checked={upper}
           onChecked={this._onSwitch}
         />
-        <Content content={this._lowlow()} onClipboard={this.updateContent} />
+        <Content
+          content={this._lowlow()}
+          clipBoardValue={upper ? value.toUpperCase() : value.toLowerCase()}
+        />
       </div>
     );
   }
