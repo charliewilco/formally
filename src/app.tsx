@@ -13,24 +13,26 @@ interface IAppState {
 }
 
 export default class App extends React.Component<IAppProps, IAppState> {
-  state = {
+  public readonly state = {
     value: localStorage.getItem("lowerCaseValue") || "",
     upper: false
   };
 
-  _onSubmit = (e: React.SyntheticEvent) => {
+  private _onSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault();
   };
 
-  _onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  private _onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     this.setState({
       value: e.target.value
     });
   };
 
-  _onSwitch = () => this.setState(state => ({ upper: !state.upper }));
+  private _onSwitch = (): void => {
+    this.setState(state => ({ upper: !state.upper }));
+  };
 
-  _lowlow = () => {
+  private _lowlow = (): string => {
     const showshow = new showdown.Converter();
 
     if (this.state.upper) {
@@ -40,13 +42,13 @@ export default class App extends React.Component<IAppProps, IAppState> {
     }
   };
 
-  componentDidUpdate(prevProps: IAppProps, prevState: IAppState) {
+  public componentDidUpdate(prevProps: IAppProps, prevState: IAppState): void {
     if (prevProps && prevState.value !== this.state.value) {
       localStorage.setItem("lowerCaseValue", this.state.value);
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const { value, upper } = this.state;
 
     return (
