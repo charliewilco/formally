@@ -21,6 +21,6 @@ jobs:
       - name: Install deps and build package
         run: yarn install --frozen-lockfile
       - name: Build
-        run: yarn build
+        run: yarn build:ci
       - name: Test
         run: yarn test --runInBand --no-cache --coverage

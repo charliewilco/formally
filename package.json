@@ -10,6 +10,7 @@
     "showdown": "^1.9.0"
   },
   "scripts": {
+    "build:ci": "react-scripts build",
     "dev": "PORT=3567 react-scripts start",
     "now-build": "react-scripts build && mv build dist",
     "test": "react-scripts test --env=jsdom",
