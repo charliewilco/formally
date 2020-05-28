@@ -11,12 +11,12 @@ interface IContentProps {
 }
 
 const Content: React.SFC<IContentProps> = ({ clipBoardValue, content }) => (
-  <div className="Output">
-    <div className="Output__content">
+  <div className="mb-6 ">
+    <div className="shadow-sm bg-gray-900 p-3 text-sm font-bold relative">
       <ClipboardButton value={clipBoardValue} />
       <div
         id="content"
-        className="__markdown"
+        className="__markdown text-lg"
         dangerouslySetInnerHTML={createMarkup(content)}
       />
     </div>
