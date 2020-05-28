@@ -1,5 +1,4 @@
 import * as React from "react";
-import WordCount from "./word-count";
 import Mark from "./mark";
 import Switch from "./toggle-switch";
 import Button from "./button";
@@ -11,19 +10,22 @@ const Input: React.SFC<{
   value: string;
   checked: boolean;
 }> = ({ onSubmit, onChange, onChecked, checked, value }) => (
-  <form className="Input" onSubmit={onSubmit}>
-    <div>
+  <form className="mb-6" onSubmit={onSubmit}>
+    <div className="relative mb-6">
       <textarea
-        className="Input__area"
+        className="w-full rounded-sm block border border-gray-200 p-2 text-white bg-gray-900 resize-none"
         id="area"
+        style={{
+          minHeight: "50vh"
+        }}
         value={value}
         onChange={onChange}
       />
-      <WordCount number={value.length} />
+      <span className="absolute top-0 right-0 p-3">{value.length}</span>
     </div>
-    <div className="Input__tray">
-      <div className="Input__tray__content">
-        <div className="Input__tray__content">
+    <div className="flex justify-between items-center">
+      <div className="flex items-center w-3/4">
+        <div className="flex items-center mr-4">
           <Mark color="rgba(30, 184, 235, 0.35)" />
           <label htmlFor="area" className="Input__label">
             Convert

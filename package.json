@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.12.0",
+    "next": "^9.4.3",
+    "postcss-preset-env": "^6.7.0",
+    "react": "^16.13.1",
     "react-copy-to-clipboard": "^5.0.2",
-    "react-dom": "^16.12.0",
-    "react-scripts": "^3.3.0",
-    "showdown": "^1.9.0"
+    "react-dom": "^16.13.1",
+    "showdown": "^1.9.0",
+    "tailwindcss": "^1.4.6"
   },
   "scripts": {
-    "build:ci": "react-scripts build",
-    "dev": "PORT=3567 react-scripts start",
-    "now-build": "react-scripts build && mv build dist",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "dev": "next dev -p 3567",
+    "build": "next build",
+    "start": "next start",
     "types": "tsc --noEmit"
   },
   "browserslist": [
