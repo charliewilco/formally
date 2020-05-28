@@ -65,7 +65,7 @@ export default function App() {
   ] = useLowLow();
 
   return (
-    <>
+    <div className="px-2">
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -75,10 +75,10 @@ export default function App() {
 
         <title>LowLow</title>
       </Head>
-      <header className="mb-6 pt-3 px-3">
-        <h1 className="text-xl font-700">LowLow</h1>
+      <header className="mb-6 py-3 container container-md mx-auto border-b-2 border-gray-700  font-black ">
+        <h1 className="text-2xl text-red-300">LowLow</h1>
       </header>
-      <main className="p-3 container-md mx-auto">
+      <main className="py-3 container container-md mx-auto">
         <div className="md:grid grid-cols-2 gap-4">
           <Input
             value={value}
@@ -93,6 +93,6 @@ export default function App() {
           />
         </div>
       </main>
-    </>
+    </div>
   );
 }

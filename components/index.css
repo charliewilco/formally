@@ -1,7 +1,7 @@
 :root {
   --w: 60rem;
   --ss: system-ui, "Avenir Next", "Segoe UI", "PT Sans", sans-serif;
-  --yellow: #ffba00;
+  --red: #ffba00;
 }
 
 *,
@@ -30,7 +30,7 @@ html {
 }
 
 .Button {
-  background: var(--yellow);
+  background: var(--red);
   color: #092e41;
   border: 0;
   padding: 0.75rem 1rem;
@@ -69,7 +69,7 @@ html {
 }
 
 .Switch__check:checked {
-  background-color: var(--yellow);
+  background-color: var(--red);
   background-image: url("./check.svg");
 }
 
@@ -120,7 +120,7 @@ html {
 
 .Input__area:focus {
   outline: none;
-  border-color: var(--yellow);
+  border-color: var(--red);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.07), 0 4px 8px rgba(0, 0, 0, 0.14);
 }
 
@@ -194,7 +194,7 @@ html {
 .__markdown blockquote::after {
   content: "";
   display: block;
-  background-color: var(--yellow);
+  background-color: var(--red);
   width: 3rem;
   height: 2px;
   margin-bottom: 1rem;
@@ -203,7 +203,7 @@ html {
 .__markdown hr {
   width: 50%;
   margin: 0 auto 1rem;
-  background-color: var(--yellow);
+  background-color: var(--red);
   border: 0;
   height: 2px;
 }

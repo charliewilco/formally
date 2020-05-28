@@ -14,7 +14,7 @@ const Switch: React.SFC<{
       />
 
       <svg
-        className="hidden w-4 h-4 text-yellow-600 pointer-events-none"
+        className="hidden w-4 h-4 text-red-600 pointer-events-none"
         viewBox="0 0 172 172">
         <g
           fill="none"

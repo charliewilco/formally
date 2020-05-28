@@ -3,6 +3,9 @@ module.exports = {
   theme: {
     extend: {}
   },
-  variants: {},
+  variants: {
+    scale: ["hover"],
+    rotate: ["hover"]
+  },
   plugins: []
 };
