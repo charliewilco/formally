@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const Switch: React.SFC<{
+const Switch: React.FC<{
   onChange: (e: any) => void;
   checked: boolean;
 }> = ({ onChange, checked }) => (

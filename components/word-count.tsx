@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const WordCount: React.SFC<{ number: number }> = ({ number }) => (
+const WordCount: React.FC<{ number: number }> = ({ number }) => (
   <span className="Input__count" children={number} />
 );
 

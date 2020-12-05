@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const Button: React.SFC<{
+const Button: React.FC<{
   onSubmit: (e: React.SyntheticEvent) => void;
 }> = ({ onSubmit }) => (
   <button

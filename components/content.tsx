@@ -10,7 +10,7 @@ interface IContentProps {
   clipBoardValue: string;
 }
 
-const Content: React.SFC<IContentProps> = ({ clipBoardValue, content }) => (
+const Content: React.FC<IContentProps> = ({ clipBoardValue, content }) => (
   <div className="mb-6 ">
     <div className="shadow-sm bg-gray-900 p-3 text-sm font-bold relative">
       <ClipboardButton value={clipBoardValue} />

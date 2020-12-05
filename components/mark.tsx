@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const Mark: React.SFC<{ color: string }> = ({ color }) => (
+const Mark: React.FC<{ color: string }> = ({ color }) => (
   <svg width="25" height="15.38461538" viewBox="0 0 208 128">
     <rect
       width="198"
