@@ -1,11 +1,8 @@
 module.exports = {
   purge: ["./pages/*.tsx", "./components/**/*.tsx"],
-  theme: {
-    extend: {}
-  },
   variants: {
     scale: ["hover"],
-    rotate: ["hover"]
+    rotate: ["hover"],
   },
-  plugins: []
+  plugins: [],
 };

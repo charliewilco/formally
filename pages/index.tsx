@@ -68,7 +68,7 @@ function createMarkup(__html: string) {
   return { __html };
 }
 
-export default function App() {
+export default function IndexPage() {
   const [
     { value, isUpper, converted },
     { onSubmit, onChange, onToggle },
