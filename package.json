@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "autoprefixer": "^10.2.5",
-    "next": "^10.0.7",
+    "next": "^10.0.8",
     "postcss": "^8.2.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
