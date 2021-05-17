@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, CSSProperties } from "react";
 import Head from "next/head";
 import remark from "remark";
 import html from "remark-html";
@@ -11,7 +11,7 @@ const makeHTML = (value: string) => {
   return parsed;
 };
 
-function usePersistedState() {
+const usePersistedState = () => {
   const [value, setValue] = useState<string>("");
   useEffect(() => {
     if (localStorage) {
@@ -30,12 +30,12 @@ function usePersistedState() {
   }, [value]);
 
   return [value, setValue] as const;
-}
+};
 
-function useLowLow() {
+const useLowLow = () => {
   const [value, setValue] = usePersistedState();
-  const [isUpper, setIsUpper] = useState(false);
-  const [converted, setConverted] = useState("");
+  const [isUpper, setIsUpper] = useState<boolean>(false);
+  const [converted, setConverted] = useState<string>("");
 
   useEffect(() => {
     const v = isUpper ? value.toUpperCase() : value.toLowerCase();
@@ -43,17 +43,12 @@ function useLowLow() {
     setConverted(html.toString("utf8"));
   }, [value, isUpper]);
 
-  const onSubmit = useCallback((e: React.SyntheticEvent): void => {
-    e.preventDefault();
-  }, []);
-
-  const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+  const onSubmit = (e: React.SyntheticEvent): void => e.preventDefault();
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void =>
     setValue(e.target.value);
-  }, []);
-
-  const onToggle = useCallback(() => {
-    setIsUpper((prev) => !prev);
-  }, []);
+  const onToggle = () => setIsUpper((prev) => !prev);
+  const onCopy = () =>
+    copyContent(isUpper ? value.toUpperCase() : value.toLowerCase());
 
   return [
     { isUpper, value, converted },
@@ -61,31 +56,33 @@ function useLowLow() {
       onToggle,
       onChange,
       onSubmit,
+      onCopy,
     },
   ] as const;
-}
+};
 
-async function copyContent(value: string) {
+const copyContent = async (value: string) => {
   try {
     await navigator.clipboard.writeText(value);
     console.log("Copied to clipboard");
   } catch (err) {
     console.error("Failed to copy: ", err);
   }
-}
+};
 
-function createMarkup(__html: string) {
-  return { __html };
-}
+const createMarkup = (__html: string) => ({ __html });
 
-export default function IndexPage() {
+const inputStyle: CSSProperties = {
+  minHeight: 300,
+};
+
+const copyButtonStyle: CSSProperties = {
+  top: -20,
+  right: -20,
+};
+
+const IndexPage = () => {
   const [state, actions] = useLowLow();
-
-  const handleCopy = () => {
-    copyContent(
-      state.isUpper ? state.value.toUpperCase() : state.value.toLowerCase()
-    );
-  };
 
   return (
     <div className="px-2">
@@ -108,9 +105,7 @@ export default function IndexPage() {
               <textarea
                 className="w-full rounded-md block border border-gray-700 py-4 px-2 text-white bg-gray-900 resize-none"
                 id="area"
-                style={{
-                  minHeight: 300,
-                }}
+                style={inputStyle}
                 value={state.value}
                 onChange={actions.onChange}
               />
@@ -186,11 +181,8 @@ export default function IndexPage() {
             <div className="shadow-sm bg-gray-900 p-3 text-sm font-bold relative">
               <button
                 className="absolute bg-red-600 hover:bg-red-900 text-xs font-black rounded-full py-3 h-12 w-12 transition transition-transform duration-300 ease-in-out transform hover:scale-75 hover:-rotate-45"
-                style={{
-                  top: -20,
-                  right: -20,
-                }}
-                onClick={handleCopy}>
+                style={copyButtonStyle}
+                onClick={actions.onCopy}>
                 Copy
               </button>
               <div
@@ -204,4 +196,6 @@ export default function IndexPage() {
       </main>
     </div>
   );
-}
+};
+
+export default IndexPage;
