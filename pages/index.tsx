@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Head from "next/head";
 import remark from "remark";
 import html from "remark-html";
@@ -6,7 +6,9 @@ import html from "remark-html";
 const LOCAL_STORAGE_KEY = "lowerCaseValue";
 
 const makeHTML = (value: string) => {
-  return remark().use(html).processSync(value);
+  const parsed = remark().use(html).processSync(value);
+
+  return parsed;
 };
 
 function usePersistedState() {
@@ -38,7 +40,7 @@ function useLowLow() {
   useEffect(() => {
     const v = isUpper ? value.toUpperCase() : value.toLowerCase();
     const html = makeHTML(v);
-    setConverted(html);
+    setConverted(html.toString("utf8"));
   }, [value, isUpper]);
 
   const onSubmit = useCallback((e: React.SyntheticEvent): void => {
@@ -77,11 +79,12 @@ function createMarkup(__html: string) {
 }
 
 export default function IndexPage() {
-  const [{ value, isUpper, converted }, { onSubmit, onChange, onToggle }] =
-    useLowLow();
+  const [state, actions] = useLowLow();
 
   const handleCopy = () => {
-    copyContent(isUpper ? value.toUpperCase() : value.toLowerCase());
+    copyContent(
+      state.isUpper ? state.value.toUpperCase() : state.value.toLowerCase()
+    );
   };
 
   return (
@@ -100,7 +103,7 @@ export default function IndexPage() {
       </header>
       <main className="py-3 container container-md mx-auto">
         <div className="md:grid grid-cols-2 gap-4">
-          <form className="mb-6" onSubmit={onSubmit}>
+          <form className="mb-6" onSubmit={actions.onSubmit}>
             <div className="relative mb-6">
               <textarea
                 className="w-full rounded-md block border border-gray-700 py-4 px-2 text-white bg-gray-900 resize-none"
@@ -108,11 +111,11 @@ export default function IndexPage() {
                 style={{
                   minHeight: 300,
                 }}
-                value={value}
-                onChange={onChange}
+                value={state.value}
+                onChange={actions.onChange}
               />
               <span className="absolute text-xxs top-0 right-0 p-3">
-                {value.length}
+                {state.value.length}
               </span>
             </div>
             <div className="flex justify-between items-center">
@@ -143,8 +146,8 @@ export default function IndexPage() {
                     <input
                       type="checkbox"
                       className="hidden"
-                      onChange={onToggle}
-                      checked={isUpper}
+                      onChange={actions.onToggle}
+                      checked={state.isUpper}
                     />
 
                     <svg
@@ -193,7 +196,7 @@ export default function IndexPage() {
               <div
                 id="content"
                 className="__markdown text-lg"
-                dangerouslySetInnerHTML={createMarkup(converted)}
+                dangerouslySetInnerHTML={createMarkup(state.converted)}
               />
             </div>
           </div>
