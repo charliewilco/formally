@@ -1,15 +1,16 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Head from "next/head";
-import showdown from "showdown";
+import remark from "remark";
+import html from "remark-html";
 
 const LOCAL_STORAGE_KEY = "lowerCaseValue";
 
-function useLowLow() {
-  const showdownRef = useRef(new showdown.Converter());
-  const [value, setValue] = useState("");
-  const [isUpper, setIsUpper] = useState(false);
-  const [converted, setConverted] = useState("");
+const makeHTML = (value: string) => {
+  return remark().use(html).processSync(value);
+};
 
+function usePersistedState() {
+  const [value, setValue] = useState<string>("");
   useEffect(() => {
     if (localStorage) {
       const item = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -26,10 +27,17 @@ function useLowLow() {
     }
   }, [value]);
 
+  return [value, setValue] as const;
+}
+
+function useLowLow() {
+  const [value, setValue] = usePersistedState();
+  const [isUpper, setIsUpper] = useState(false);
+  const [converted, setConverted] = useState("");
+
   useEffect(() => {
-    const html = showdownRef.current.makeHtml(
-      isUpper ? value.toUpperCase() : value.toLowerCase()
-    );
+    const v = isUpper ? value.toUpperCase() : value.toLowerCase();
+    const html = makeHTML(v);
     setConverted(html);
   }, [value, isUpper]);
 
@@ -69,10 +77,8 @@ function createMarkup(__html: string) {
 }
 
 export default function IndexPage() {
-  const [
-    { value, isUpper, converted },
-    { onSubmit, onChange, onToggle },
-  ] = useLowLow();
+  const [{ value, isUpper, converted }, { onSubmit, onChange, onToggle }] =
+    useLowLow();
 
   const handleCopy = () => {
     copyContent(isUpper ? value.toUpperCase() : value.toLowerCase());
