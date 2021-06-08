@@ -46,7 +46,7 @@
     }
   },
   "devDependencies": {
-    "@types/node": "^15.12.1",
+    "@types/node": "^15.12.2",
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.5",
     "husky": "^6.0.0",
