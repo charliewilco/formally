@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ["./pages/*.tsx", "./components/**/*.tsx"],
+  purge: ["./src/pages/*.tsx", "./src/components/**/*.tsx"],
   variants: {
     scale: ["hover"],
     rotate: ["hover"],
