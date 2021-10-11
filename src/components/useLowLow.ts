@@ -1,26 +1,13 @@
-import { useEffect, useCallback, useReducer, Reducer } from "react";
-import { reducer, ILowLowState, Action, LowLowActions } from "./reducer";
-
-const copyContent = async (value: string) => {
-  try {
-    await navigator.clipboard.writeText(value);
-    console.log("Copied to clipboard");
-  } catch (err) {
-    console.error("Failed to copy: ", err);
-  }
-};
-const LOCAL_STORAGE_KEY = "lowerCaseValue";
+import { useEffect, useCallback } from "react";
+import { useCopy } from "./useCopy";
+import { usePersistedStorage } from "./useLocalStorage";
+import { LowLowActions, useLowLowReducer } from "./useLowLowReducer";
 
 type HTMLParser = (value: string) => Promise<string>;
 
 export const useLowLow = (parser: HTMLParser) => {
-  const [{ isUpper, value, converted }, dispatch] = useReducer<
-    Reducer<ILowLowState, Action>
-  >(reducer, {
-    isUpper: false,
-    converted: "",
-    value: "",
-  });
+  const copyContent = useCopy();
+  const [{ isUpper, value, converted }, dispatch] = useLowLowReducer();
 
   const setHTML = useCallback(
     async (value: string) => {
@@ -30,21 +17,9 @@ export const useLowLow = (parser: HTMLParser) => {
     [dispatch]
   );
 
-  useEffect(() => {
-    if (localStorage) {
-      const item = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-      if (item) {
-        dispatch({ type: LowLowActions.GET_VALUE_FROM_STORAGE, payload: item });
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (localStorage) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, value);
-    }
-  }, [value]);
+  usePersistedStorage(value, (item: string) =>
+    dispatch({ type: LowLowActions.GET_VALUE_FROM_STORAGE, payload: item })
+  );
 
   useEffect(() => {
     setHTML(isUpper ? value.toUpperCase() : value.toLowerCase());

@@ -1,4 +1,4 @@
-import { Reducer } from "react";
+import { Reducer, useReducer } from "react";
 
 export interface ILowLowState {
   value: string;
@@ -30,3 +30,10 @@ export const reducer: Reducer<ILowLowState, Action> = (state, action) => {
       return { ...state, converted: action.payload };
   }
 };
+
+export const useLowLowReducer = () =>
+  useReducer<Reducer<ILowLowState, Action>>(reducer, {
+    isUpper: false,
+    converted: "",
+    value: "",
+  });
