@@ -38,7 +38,7 @@ const IndexPage = () => {
           <form className="mb-6" onSubmit={actions.onSubmit}>
             <div className="relative mb-6">
               <textarea
-                className="h-64 block w-full px-2 py-4 text-white bg-gray-900 border border-gray-700 resize-none rounded-md"
+                className="h-64 block w-full px-2 font-mono py-4 text-white bg-gray-900 border border-gray-700 resize-none rounded-md"
                 id="area"
                 value={value}
                 onChange={actions.onChange}

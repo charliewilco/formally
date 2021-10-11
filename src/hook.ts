@@ -1,4 +1,4 @@
-import { useEffect, useReducer, Reducer } from "react";
+import { useEffect, useCallback, useReducer, Reducer } from "react";
 import { reducer, ILowLowState, Action, LowLowActions } from "./reducer";
 
 const copyContent = async (value: string) => {
@@ -21,6 +21,15 @@ export const useLowLow = (parser: HTMLParser) => {
     converted: "",
     value: "",
   });
+
+  const setHTML = useCallback(
+    async (value: string) => {
+      const html = await parser(value);
+      dispatch({ type: LowLowActions.SET_CONVERTED, payload: html });
+    },
+    [dispatch]
+  );
+
   useEffect(() => {
     if (localStorage) {
       const item = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -38,13 +47,7 @@ export const useLowLow = (parser: HTMLParser) => {
   }, [value]);
 
   useEffect(() => {
-    const v = isUpper ? value.toUpperCase() : value.toLowerCase();
-    async function setHTML() {
-      const html = await parser(v);
-      dispatch({ type: LowLowActions.SET_CONVERTED, payload: html });
-    }
-
-    setHTML();
+    setHTML(isUpper ? value.toUpperCase() : value.toLowerCase());
   }, [value, isUpper]);
 
   const onSubmit = (e: React.SyntheticEvent): void => e.preventDefault();
