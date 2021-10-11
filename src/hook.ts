@@ -11,7 +11,7 @@ const copyContent = async (value: string) => {
 };
 const LOCAL_STORAGE_KEY = "lowerCaseValue";
 
-type HTMLParser = (value: string) => string;
+type HTMLParser = (value: string) => Promise<string>;
 
 export const useLowLow = (parser: HTMLParser) => {
   const [{ isUpper, value, converted }, dispatch] = useReducer<
@@ -39,8 +39,12 @@ export const useLowLow = (parser: HTMLParser) => {
 
   useEffect(() => {
     const v = isUpper ? value.toUpperCase() : value.toLowerCase();
-    const html = parser(v);
-    dispatch({ type: LowLowActions.SET_CONVERTED, payload: html });
+    async function setHTML() {
+      const html = await parser(v);
+      dispatch({ type: LowLowActions.SET_CONVERTED, payload: html });
+    }
+
+    setHTML();
   }, [value, isUpper]);
 
   const onSubmit = (e: React.SyntheticEvent): void => e.preventDefault();

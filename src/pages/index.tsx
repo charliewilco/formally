@@ -1,9 +1,9 @@
 import Head from "next/head";
-import { remark } from "remark";
 import html from "remark-html";
 import { useLowLow } from "../hook";
 
-const makeHTML = (value: string) => {
+const makeHTML = async (value: string) => {
+  const { remark } = await import("remark");
   const parsed = remark().use(html).processSync(value);
 
   return parsed.toString("utf8");
