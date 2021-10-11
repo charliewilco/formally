@@ -2,7 +2,7 @@ const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultConfig");
 
 module.exports = {
-  purge: ["./src/pages/*.tsx", "./src/components/**/*.tsx"],
+  purge: ["./pages/*.tsx", "./components/**/*.tsx"],
   mode: "jit",
   variants: {
     scale: ["hover"],
