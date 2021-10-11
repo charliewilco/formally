@@ -38,9 +38,8 @@ export const Form: React.VFC<FormProps> = ({ onSubmit }) => {
       <aside className="grid grid-cols-3 gap-2 mb-4">
         {formatters.map((value, index) => {
           return (
-            <div className="col-span-1 flex gap-2">
+            <div className="col-span-1 flex gap-2" key={index}>
               <FormatSelect
-                key={index}
                 selected={value}
                 onSelect={changeSelected(index)}
                 map={FORMAT_MAP}

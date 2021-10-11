@@ -30,7 +30,7 @@ const IndexPage = () => {
         <title>Formally</title>
       </Head>
       <header className="max-w-xl py-3 py-3 mx-auto mb-6 border-b-2 border-gray-700">
-        <h1 className="text-xl text-amber-300 font-mono mb-2">Formally</h1>
+        <h1 className="text-xl text-amber-300 font-mono italic mb-2">formally</h1>
         <p className="text-sm">A text formatter like every other one.</p>
       </header>
       <main className="max-w-xl py-3 mx-auto">
@@ -52,7 +52,7 @@ const IndexPage = () => {
               </>
             )}
           </Disclosure>
-          <Disclosure>
+          <Disclosure defaultOpen>
             {({ open }) => (
               <>
                 <Disclosure.Button className="flex justify-between w-full py-2 text-sm font-medium text-left rounded-lg focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">

@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultConfig");
 
 module.exports = {
   purge: ["./src/pages/*.tsx", "./src/components/**/*.tsx"],
@@ -12,6 +13,9 @@ module.exports = {
       colors: {
         amber: colors.amber,
         orange: colors.orange,
+      },
+      fontFamily: {
+        mono: ["DM Mono", ...defaultTheme.theme.fontFamily.mono],
       },
     },
   },
