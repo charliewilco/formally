@@ -1,18 +1,22 @@
 import Head from "next/head";
-import html from "remark-html";
+import { useState } from "react";
+import { Disclosure } from "@headlessui/react";
+import { ChevronUpIcon } from "@heroicons/react/solid";
+import { FormattedOutput } from "../lib";
 import { Form } from "../components/form";
 import { Output } from "../components/output";
-import { useLowLow } from "../components/useLowLow";
-
-const makeHTML = async (value: string) => {
-  const { remark } = await import("remark");
-  const parsed = remark().use(html).processSync(value);
-
-  return parsed.toString("utf8");
-};
 
 const IndexPage = () => {
-  const [{ value, isUpper, converted }, actions] = useLowLow(makeHTML);
+  const [formattedOutput, setFormattedOutput] = useState<FormattedOutput | null>(
+    null
+  );
+
+  const handleSubmit = (cb: () => void) => {
+    return (value: FormattedOutput) => {
+      cb();
+      setFormattedOutput(value);
+    };
+  };
 
   return (
     <div className="px-2 text-white min-h-screen bg-black">
@@ -23,21 +27,48 @@ const IndexPage = () => {
         <meta name="application-name" content="Low Low" />
         <meta name="theme-color" content="#063651" />
 
-        <title>LowLow</title>
+        <title>Formally</title>
       </Head>
-      <header className="container py-3 mx-auto mb-6 font-black border-b-2 border-gray-700 container-md ">
-        <h1 className="text-2xl text-red-300">LowLow</h1>
+      <header className="max-w-xl py-3 py-3 mx-auto mb-6 border-b-2 border-gray-700">
+        <h1 className="text-xl text-amber-300 font-mono mb-2">Formally</h1>
+        <p className="text-sm">A text formatter like every other one.</p>
       </header>
-      <main className="container py-3 mx-auto container-md">
-        <div className="md:grid grid-cols-2 gap-4">
-          <Form
-            value={value}
-            isUpper={isUpper}
-            onToggle={actions.onToggle}
-            onSubmit={actions.onSubmit}
-            onChange={actions.onChange}
-          />
-          <Output converted={converted} onCopy={actions.onCopy} />
+      <main className="max-w-xl py-3 mx-auto">
+        <div className="">
+          <Disclosure defaultOpen>
+            {({ open, close }) => (
+              <>
+                <Disclosure.Button className="flex justify-between w-full py-2 text-sm font-medium text-left rounded-lg focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                  <span>Input</span>
+                  <ChevronUpIcon
+                    className={`${
+                      open ? "transform rotate-180" : ""
+                    } w-5 h-5 text-white`}
+                  />
+                </Disclosure.Button>
+                <Disclosure.Panel className="pt-4 pb-2">
+                  <Form onSubmit={handleSubmit(close)} />
+                </Disclosure.Panel>
+              </>
+            )}
+          </Disclosure>
+          <Disclosure>
+            {({ open }) => (
+              <>
+                <Disclosure.Button className="flex justify-between w-full py-2 text-sm font-medium text-left rounded-lg focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                  <span>Output</span>
+                  <ChevronUpIcon
+                    className={`${
+                      open ? "transform rotate-180" : ""
+                    } w-5 h-5 text-white`}
+                  />
+                </Disclosure.Button>
+                <Disclosure.Panel className="pt-4 pb-2">
+                  <Output converted={formattedOutput} />
+                </Disclosure.Panel>
+              </>
+            )}
+          </Disclosure>
         </div>
       </main>
     </div>

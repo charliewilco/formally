@@ -1,10 +1,19 @@
+import html from "remark-html";
 import { FORMAT_MAP } from "./map";
 
+export const makeHTML = async (value: string) => {
+  const { remark } = await import("remark");
+  const parsed = remark().use(html).processSync(value);
+
+  return parsed.toString("utf8");
+};
+
 type FormatterKey = number;
-type States = [FormatterKey, string][];
+
+export type FormattedStates = [FormatterKey, string][];
 
 export type FormattedOutput = {
-  states: States;
+  states: FormattedStates;
   formatted: string;
 };
 
