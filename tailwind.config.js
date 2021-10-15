@@ -15,7 +15,16 @@ module.exports = {
         orange: colors.orange,
       },
       fontFamily: {
-        mono: ["DM Mono", ...defaultTheme.theme.fontFamily.mono],
+        mono: [
+          "ui-monospace",
+          "SFMono-Regular",
+          "SF Mono",
+          "Menlo",
+          "Consolas",
+          "Liberation Mono",
+          "monospace",
+          ...defaultTheme.theme.fontFamily.mono,
+        ],
       },
     },
   },

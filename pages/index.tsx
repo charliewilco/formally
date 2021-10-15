@@ -1,10 +1,12 @@
 import Head from "next/head";
+import Image from "next/image";
 import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import { FormattedOutput } from "../lib";
 import { Form } from "../components/form";
 import { Output } from "../components/output";
+import logo from "../public/Aa.png";
 
 const IndexPage = () => {
   const [formattedOutput, setFormattedOutput] = useState<FormattedOutput | null>(
@@ -23,15 +25,19 @@ const IndexPage = () => {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/Aa.png" />
         <meta name="application-name" content="Low Low" />
         <meta name="theme-color" content="#063651" />
 
         <title>Formally</title>
       </Head>
-      <header className="max-w-xl py-3 py-3 mx-auto mb-6 border-b-2 border-gray-700">
-        <h1 className="text-xl text-amber-300 font-mono italic mb-2">formally</h1>
-        <p className="text-sm">A text formatter like every other one.</p>
+      <header className="flex max-w-xl py-4 mx-auto mb-6 border-b-2 border-gray-700">
+        <Image src={logo} width={64} height={64} />
+        <h1 className="sr-only">formally</h1>
+        <p className="text-sm ml-4">
+          A text formatter like every other one. Apply any number of transforms to a
+          given piece of text.
+        </p>
       </header>
       <main className="max-w-xl py-3 mx-auto">
         <div className="">
