@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/solid";
+import { MinusCircle, PlusCircle } from "./icons";
 import { FORMAT_MAP, FormattedOutput, tranformTextWithFormatters } from "../lib";
 import { FormatSelect } from "./format-list";
 import { useFormatterReducer } from "./useFormarterReducer";
@@ -45,7 +45,7 @@ export const Form: React.VFC<FormProps> = ({ onSubmit }) => {
                 map={FORMAT_MAP}
               />
               <button className="text-white" onClick={removeFormatter(index)}>
-                <MinusCircleIcon className="w-5 h-5" />
+                <MinusCircle className="w-5 h-5" />
               </button>
             </div>
           );
@@ -56,7 +56,7 @@ export const Form: React.VFC<FormProps> = ({ onSubmit }) => {
           className="px-4 py-1 font-bold text-white rounded"
           type="button"
           onClick={addFormatter}>
-          <PlusCircleIcon className="w-5 h-5" />
+          <PlusCircle className="w-5 h-5" />
         </button>
         <button
           className="px-4 py-1 font-bold text-gray-900 bg-amber-500 rounded hover:bg-amber-900 hover:text-white"
@@ -64,6 +64,7 @@ export const Form: React.VFC<FormProps> = ({ onSubmit }) => {
           Convert
         </button>
       </div>
+      <style jsx>{``}</style>
     </form>
   );
 };

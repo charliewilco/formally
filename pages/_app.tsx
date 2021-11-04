@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-import "tailwindcss/tailwind.css";
+import "@reach/listbox/styles.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;

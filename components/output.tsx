@@ -1,4 +1,4 @@
-import { ClipboardCopyIcon } from "@heroicons/react/solid";
+import { Clipboard } from "./icons";
 import { FormattedOutput, FORMAT_MAP } from "../lib";
 import { StateMap } from "./state-map";
 import { useCopy } from "./useCopy";
@@ -25,7 +25,7 @@ export const Output: React.VFC<OutputProps> = ({ converted }) => {
               className="absolute transition transition-transform duration-300 ease-in-out transform hover:scale-75 hover:opacity-50"
               style={copyButtonStyle}
               onClick={() => onCopy(converted.formatted)}>
-              <ClipboardCopyIcon className="w-5 h-5" />
+              <Clipboard className="w-5 h-5" />
             </button>
             <div
               id="content"

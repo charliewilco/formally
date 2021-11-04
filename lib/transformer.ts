@@ -8,7 +8,7 @@ export const makeHTML = async (value: string) => {
   return parsed.toString("utf8");
 };
 
-type FormatterKey = number;
+type FormatterKey = string;
 
 export type FormattedStates = [FormatterKey, string][];
 
@@ -17,7 +17,7 @@ export type FormattedOutput = {
   formatted: string;
 };
 
-const reducer = (acc: FormattedOutput, currentValue: number): FormattedOutput => {
+const reducer = (acc: FormattedOutput, currentValue: string): FormattedOutput => {
   const pair = FORMAT_MAP.get(currentValue);
 
   if (pair) {
@@ -34,10 +34,10 @@ const reducer = (acc: FormattedOutput, currentValue: number): FormattedOutput =>
 
 export const tranformTextWithFormatters = (
   value: string,
-  formatKeys: number[]
+  formatKeys: string[]
 ): FormattedOutput => {
   return formatKeys.reduce<FormattedOutput>(reducer, {
-    states: [[0, value]],
+    states: [["0", value]],
     formatted: value,
   });
 };

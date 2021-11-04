@@ -10,7 +10,7 @@ export type Action =
   | {
       type: FormatterActions.SET_FORMATTER;
       position: number;
-      transformerKey: number;
+      transformerKey: string;
     }
   | {
       type: FormatterActions.ADD_FORMATTER;
@@ -20,10 +20,10 @@ export type Action =
       position: number;
     };
 
-const reducer: React.Reducer<number[], Action> = (formatters, action) => {
+const reducer: React.Reducer<string[], Action> = (formatters, action) => {
   switch (action.type) {
     case FormatterActions.ADD_FORMATTER:
-      return [...formatters, 0];
+      return [...formatters, "0"];
     case FormatterActions.REMOVE_FORMATTER: {
       const clone = [...formatters];
       clone.splice(action.position, 1);
@@ -40,11 +40,11 @@ const reducer: React.Reducer<number[], Action> = (formatters, action) => {
 };
 
 export const useFormatterReducer = () => {
-  const [formatters, dispatch] = useReducer(reducer, [0]);
+  const [formatters, dispatch] = useReducer(reducer, ["0"]);
 
   const changeSelected = useCallback(
     (position: number) => {
-      return (transformerKey: number) =>
+      return (transformerKey: string) =>
         dispatch({ type: FormatterActions.SET_FORMATTER, position, transformerKey });
     },
     [dispatch]
