@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/solid";
+import { MinusCircle, PlusCircle } from "./icons";
 import { FORMAT_MAP, FormattedOutput, tranformTextWithFormatters } from "../lib";
 import { FormatSelect } from "./format-list";
 import { useFormatterReducer } from "./useFormarterReducer";
@@ -22,48 +22,132 @@ export const Form: React.VFC<FormProps> = ({ onSubmit }) => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div className="relative mb-4">
-        <textarea
-          className="h-40 block w-full px-2 font-mono py-4 text-white bg-gray-900 border border-gray-700 resize-none rounded-md"
-          id="area"
-          {...formik.getFieldProps("text")}
-        />
-        <span className="absolute top-0 right-0 p-3 text-xs">
-          {formik.values.text.length}
-        </span>
+      <div className="textarea-wrapper">
+        <textarea id="area" {...formik.getFieldProps("text")} />
+        <div className="tray">
+          <span className="count">{formik.values.text.length}</span>
+        </div>
       </div>
-
-      <h3 className="mb-4 font-mono text-xs">Transforms to apply</h3>
-
-      <aside className="grid grid-cols-3 gap-2 mb-4">
+      <div className="transform-header">
+        <h3>Transforms to apply</h3>
+        <button type="button" className="plus" onClick={addFormatter}>
+          <PlusCircle />
+        </button>
+      </div>
+      <aside>
         {formatters.map((value, index) => {
           return (
-            <div className="col-span-1 flex gap-2" key={index}>
+            <div key={index} className="selectx">
               <FormatSelect
                 selected={value}
                 onSelect={changeSelected(index)}
                 map={FORMAT_MAP}
               />
-              <button className="text-white" onClick={removeFormatter(index)}>
-                <MinusCircleIcon className="w-5 h-5" />
+              <button className="minus" onClick={removeFormatter(index)}>
+                <MinusCircle />
               </button>
             </div>
           );
         })}
       </aside>
-      <div className="flex items-center space-x-2 justify-end">
-        <button
-          className="px-4 py-1 font-bold text-white rounded"
-          type="button"
-          onClick={addFormatter}>
-          <PlusCircleIcon className="w-5 h-5" />
-        </button>
-        <button
-          className="px-4 py-1 font-bold text-gray-900 bg-amber-500 rounded hover:bg-amber-900 hover:text-white"
-          type="submit">
-          Convert
-        </button>
+      <div className="tray">
+        <button type="submit">Convert</button>
       </div>
+      <style jsx>{`
+        textarea {
+          background-color: var(--bg);
+          border: 0;
+          border-radius: 0;
+          transition: border 0.2s ease, color 0.2s ease;
+          color: inherit;
+          display: block;
+          font-size: 0.875rem;
+          line-height: 1.7;
+          height: 100%;
+          min-height: 6rem;
+          outline: 0;
+          padding: 0.5rem 0.75rem;
+          resize: none;
+          width: 100%;
+        }
+
+        textarea:focus {
+        }
+
+        .textarea-wrapper {
+          border-radius: 0.5rem;
+          overflow: hidden;
+          background: var(--bg-offset);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          margin-bottom: 2rem;
+        }
+
+        button {
+          color: inherit;
+          appearance: none;
+          background: none;
+          border: 0;
+          line-height: 1;
+          cursor: pointer;
+        }
+
+        aside,
+        .transform-header,
+        .selectx {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        .transform-header {
+          margin-bottom: 1rem;
+        }
+
+        .tray {
+          padding: 0.5rem;
+          display: flex;
+          justify-content: flex-end;
+        }
+        .count {
+          align-self: flex-end;
+          font-family: var(--monospace);
+        }
+
+        .selectx {
+          margin-right: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .plus,
+        .minus {
+          margin-left: 0.5rem;
+          width: 1rem;
+          height: 1rem;
+        }
+
+        aside {
+          flex-wrap: wrap;
+        }
+
+        h3 {
+          font-weight: 400;
+        }
+
+        button[type="submit"] {
+          background: var(--highlight);
+          color: white;
+          padding: 0.5rem 0.75rem;
+          font-weight: 700;
+          font-size: 1.125rem;
+          border-radius: 0.25rem;
+          transition: transform 0.2s linear, opacity 0.2s linear;
+        }
+
+        button[type="submit"]:hover {
+          opacity: 0.5;
+          transform: scale(0.875);
+        }
+      `}</style>
     </form>
   );
 };

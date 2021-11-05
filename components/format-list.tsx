@@ -1,12 +1,18 @@
-import { Fragment } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import {
+  ListboxInput,
+  ListboxButton,
+  ListboxPopover,
+  ListboxOption,
+  ListboxList,
+} from "@reach/listbox";
+
 import { FormatMap } from "../lib";
+import { ChevronDown } from "./icons";
 
 interface FormatSelectProps {
-  selected: number;
+  selected: string;
   map: FormatMap;
-  onSelect(value: number): void;
+  onSelect(value: string): void;
 }
 
 export const FormatSelect: React.VFC<FormatSelectProps> = ({
@@ -15,52 +21,41 @@ export const FormatSelect: React.VFC<FormatSelectProps> = ({
   onSelect,
 }) => {
   return (
-    <div className="w-full z-50">
-      <Listbox value={selected} onChange={onSelect}>
-        <div className="relative mt-1 w-full">
-          <Listbox.Button className="w-full relative py-2 pl-3 pr-10 text-left bg-gray-900 rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
-            <span className="block truncate">{map.get(selected)?.[0]}</span>
-            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <SelectorIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
-            </span>
-          </Listbox.Button>
-          <Transition
-            as={Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0">
-            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-gray-900 rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-50">
+    <div>
+      <ListboxInput value={selected.toString()} onChange={onSelect}>
+        <div>
+          <ListboxButton className="listbox-button" arrow={<ChevronDown />}>
+            <span>{map.get(selected)?.[0]}</span>
+          </ListboxButton>
+
+          <ListboxPopover>
+            <ListboxList>
               {Array.from(map).map(([value, [label]], idx) => (
-                <Listbox.Option
-                  key={idx}
-                  className={({ active }) =>
-                    `${active ? "text-amber-900 bg-amber-100" : "text-white"}
-                                  cursor-default select-none relative py-2 pl-10 pr-4`
-                  }
-                  value={value}>
-                  {({ selected, active }) => (
-                    <>
-                      <span
-                        className={`${
-                          selected ? "font-medium" : "font-normal"
-                        } block truncate`}>
-                        {label}
-                      </span>
-                      {selected ? (
-                        <span
-                          className={`${active ? "text-amber-600" : "text-amber-600"}
-                                        absolute inset-y-0 left-0 flex items-center pl-3`}>
-                          <CheckIcon className="w-5 h-5" aria-hidden="true" />
-                        </span>
-                      ) : null}
-                    </>
-                  )}
-                </Listbox.Option>
+                <ListboxOption key={idx} value={value.toString()}>
+                  <span>{label}</span>
+                </ListboxOption>
               ))}
-            </Listbox.Options>
-          </Transition>
+            </ListboxList>
+          </ListboxPopover>
         </div>
-      </Listbox>
+      </ListboxInput>
+      <style jsx>{`
+        :global(.listbox-button) {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        }
+
+        :global([data-reach-listbox-button]) {
+          border-radius: 0.25rem;
+          border: 0;
+          background: var(--bg-offset);
+        }
+
+        :global([data-reach-listbox-popover]) {
+          background: var(--bg);
+        }
+      `}</style>
     </div>
   );
 };
