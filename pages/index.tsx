@@ -20,10 +20,38 @@ const IndexPage = () => {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="shortcut icon" href="/Aa.png" />
+        <link rel="shortcut icon" href="/light-192.png" />
+        <link
+          rel="shortcut icon"
+          href="/dark-192.png"
+          media="prefers-color-scheme: dark"
+        />
         <meta name="application-name" content="Formally" />
-        <meta name="theme-color" content="#063651" />
+        <meta name="theme-color" content="#0f76ff" />
         <title>Formally</title>
+        <meta name="description" content="A text formatter like every other one." />
+        <meta name="title" content="Formally" />
+        <meta name="author" content="Charlie Peters" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://formally.vercel.app/" />
+        <meta property="og:title" content="Formally" />
+        <meta
+          property="og:description"
+          content="A text formatter like every other one."
+        />
+        <meta property="og:image" content="https://formally.vercel.app/og.png" />
+        <meta property="twitter:url" content="https://formally.vercel.app/" />
+        <meta property="twitter:title" content="Formally" />
+        <meta
+          property="twitter:description"
+          content="A text formatter like every other one."
+        />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content="@charlespeters" />
+        <meta
+          property="twitter:image"
+          content="https://formally.vercel.app/og.png"
+        />
       </Head>
       <header>
         <Marker />
@@ -48,7 +76,7 @@ const IndexPage = () => {
           </Disclosure>
         </div>
         <div>
-          <Disclosure defaultOpen>
+          <Disclosure>
             <DisclosureButton className="disclosure-button">
               <span className="label">Output</span>
               <Arrow />

@@ -121,8 +121,8 @@ export const Form: React.VFC<FormProps> = ({ onSubmit }) => {
         .plus,
         .minus {
           margin-left: 0.5rem;
-          width: 1.25rem;
-          height: 1.25rem;
+          width: 1rem;
+          height: 1rem;
         }
 
         aside {

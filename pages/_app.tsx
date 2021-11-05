@@ -7,8 +7,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
       <style jsx global>{`
         :root {
-          --monospace: SFMono-Regular, "SF Mono", Menlo, Consolas, Liberation Mono,
-            monospace;
+          --monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+            Liberation Mono, monospace;
           --sans-serif: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
             Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
             "Segoe UI Symbol";
