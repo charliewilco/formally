@@ -15,11 +15,11 @@ export const usePersistedStorage = (
         initialSet(item);
       }
     }
-  }, []);
+  }, [initialSet, key]);
 
   useEffect(() => {
     if (localStorage) {
       localStorage.setItem(key, value);
     }
-  }, [value]);
+  }, [key, value]);
 };
