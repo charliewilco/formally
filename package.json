@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@reach/disclosure": "^0.17.0",
-    "@reach/listbox": "^0.16.2",
+    "@reach/listbox": "^0.17.0",
     "@types/lodash-es": "^4.17.6",
     "formik": "^2.2.9",
     "lodash-es": "^4.17.21",
