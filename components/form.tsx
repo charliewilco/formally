@@ -23,8 +23,8 @@ export const Form: React.VFC<FormProps> = ({ onSubmit }) => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="textarea-wrapper">
-        <textarea id="area" {...formik.getFieldProps("text")} />
-        <div className="tray">
+        <textarea id="area" {...formik.getFieldProps("text")} placeholder="Hello, I love you. Won't you tell me your name?" />
+        <div className="tray" aria-live="polite">
           <span className="count">{formik.values.text.length}</span>
         </div>
       </div>
@@ -43,7 +43,7 @@ export const Form: React.VFC<FormProps> = ({ onSubmit }) => {
                 onSelect={changeSelected(index)}
                 map={FORMAT_MAP}
               />
-              <button className="minus" onClick={removeFormatter(index)}>
+              <button className="minus" type="button" onClick={removeFormatter(index)}>
                 <MinusCircle />
               </button>
             </div>
@@ -66,7 +66,7 @@ export const Form: React.VFC<FormProps> = ({ onSubmit }) => {
           height: 100%;
           min-height: 6rem;
           outline: 0;
-          padding: 0.5rem 0.75rem;
+          padding: 0.5rem 1rem;
           resize: none;
           width: 100%;
         }

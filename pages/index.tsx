@@ -134,6 +134,11 @@ const IndexPage = () => {
             flex: 0;
           }
 
+          .label {
+            font-weight: 400;
+            font-size: 1.25rem;
+          }
+
           main {
             flex: 1;
             display: grid;

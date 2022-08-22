@@ -36,6 +36,7 @@ export const StateMap: React.VFC<StateMapProps> = ({ transformedStates, map }) =
         h3 {
           margin-bottom: 1rem;
           font-weight: 400;
+          font-size: 1.25rem;
         }
       `}</style>
     </div>

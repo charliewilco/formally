@@ -42,14 +42,25 @@ export const FormatSelect: React.VFC<FormatSelectProps> = ({
       <style jsx>{`
         :global(.listbox-button) {
           display: flex;
-          justify-content: flex-start;
+          justify-content: center;
           align-items: center;
+
+        }
+
+        :global([data-reach-listbox-input]) {
+
         }
 
         :global([data-reach-listbox-button]) {
           border-radius: 0.25rem;
           border: 0;
-          background: var(--bg-offset);
+          background: rgba(15, 118, 255, .5);
+        }
+
+        :global([data-reach-listbox-arrow]) {
+          width: 0;
+          height: 0;
+          flex: -1;
         }
 
         :global([data-reach-listbox-popover]) {
