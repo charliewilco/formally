@@ -152,6 +152,13 @@
     "@reach/utils" "0.17.0"
     tslib "^2.3.0"
 
+"@reach/auto-id@0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.18.0.tgz#4b97085cd1cf1360a9bedc6e9c78e97824014f0d"
+  integrity sha512-XwY1IwhM7mkHZFghhjiqjQ6dstbOdpbFLdggeke75u8/8icT8uEHLbovFUgzKjy9qPvYwZIB87rLiR8WdtOXCg==
+  dependencies:
+    "@reach/utils" "0.18.0"
+
 "@reach/descendants@0.17.0":
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/@reach/descendants/-/descendants-0.17.0.tgz#3fb087125a67870acd4dee1528449ed546829b67"
@@ -160,16 +167,14 @@
     "@reach/utils" "0.17.0"
     tslib "^2.3.0"
 
-"@reach/disclosure@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@reach/disclosure/-/disclosure-0.17.0.tgz#2c34982677c0f3c0cb3efb33c9a10d369c6ffbb0"
-  integrity sha512-sQGxy+r+YdG+vTfdFTp41VrEhX9gwYyVVIt92M+nJ0XsqZCEhLNP/PaEwncOdCs7aR6sKklGlH/R/VeiP1UwLw==
+"@reach/disclosure@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@reach/disclosure/-/disclosure-0.18.0.tgz#a68fca7f043258512353790400cb756aa6c3be57"
+  integrity sha512-09WUO8CouTgtTjWONZLf/YEzatsUZAAs9hpfA6a4Bq918jQtVLffytShlSD7u0evzU0keZBcmIM+jV/WI/K1VA==
   dependencies:
-    "@reach/auto-id" "0.17.0"
-    "@reach/utils" "0.17.0"
-    prop-types "^15.7.2"
-    tiny-warning "^1.0.3"
-    tslib "^2.3.0"
+    "@reach/auto-id" "0.18.0"
+    "@reach/polymorphic" "0.18.0"
+    "@reach/utils" "0.18.0"
 
 "@reach/listbox@^0.17.0":
   version "0.17.0"
@@ -196,6 +201,11 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@reach/observe-rect/-/observe-rect-1.2.0.tgz#d7a6013b8aafcc64c778a0ccb83355a11204d3b2"
   integrity sha512-Ba7HmkFgfQxZqqaeIWWkNK0rEhpxVQHIoVyW1YDSkGsGIXzcaW4deC8B0pZrNSSyLTdIk7y+5olKt5+g0GmFIQ==
+
+"@reach/polymorphic@0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@reach/polymorphic/-/polymorphic-0.18.0.tgz#2fe42007a774e06cdbc8e13e0d46f2dc30f2f1ed"
+  integrity sha512-N9iAjdMbE//6rryZZxAPLRorzDcGBnluf7YQij6XDLiMtfCj1noa7KyLpEc/5XCIB/EwhX3zCluFAwloBKdblA==
 
 "@reach/popover@0.17.0":
   version "0.17.0"
@@ -235,6 +245,11 @@
   dependencies:
     tiny-warning "^1.0.3"
     tslib "^2.3.0"
+
+"@reach/utils@0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.18.0.tgz#4f3cebe093dd436eeaff633809bf0f68f4f9d2ee"
+  integrity sha512-KdVMdpTgDyK8FzdKO9SCpiibuy/kbv3pwgfXshTI6tEcQT1OOwj7BAksnzGC0rPz0UholwC+AgkqEl3EJX3M1A==
 
 "@rushstack/eslint-patch@^1.1.3":
   version "1.1.3"
